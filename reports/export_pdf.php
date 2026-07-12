@@ -1,0 +1,518 @@
+<?php
+require '../vendor/autoload.php';
+
+use Dompdf\Dompdf;
+use Dompdf\Options;
+
+session_start();
+include "../config/database.php";
+
+// =====================================
+// FILTER
+// =====================================
+
+$start = $_GET['start'] ?? '';
+$end = $_GET['end'] ?? '';
+
+$where = "";
+
+if (!empty($start) && !empty($end)) {
+    $where = "WHERE t.tanggal BETWEEN '$start' AND '$end'";
+}
+
+// =====================================
+// USER LOGIN
+// =====================================
+
+$user = $_SESSION['nama'];
+
+// =====================================
+// QUERY TRANSAKSI
+// =====================================
+
+$query = mysqli_query($conn, "
+SELECT
+
+t.kode_transaksi,
+p.nama,
+t.tanggal,
+t.metode_pembayaran,
+t.total
+
+FROM transactions t
+
+JOIN patients p
+ON t.patient_id = p.id
+
+$where
+
+ORDER BY t.tanggal DESC
+");
+
+// =====================================
+// SUMMARY
+// =====================================
+
+// Total Revenue
+
+$qRevenue = mysqli_query($conn, "
+SELECT
+IFNULL(SUM(total),0) revenue
+FROM transactions t
+" . (!empty($where) ? str_replace("t.", "", $where) : "") . "
+");
+
+$revenue = mysqli_fetch_assoc($qRevenue);
+
+
+// Total Transaction
+
+$qTransaction = mysqli_query($conn, "
+SELECT
+COUNT(*) total_transaction
+FROM transactions t
+" . (!empty($where) ? str_replace("t.", "", $where) : "") . "
+");
+
+$transaction = mysqli_fetch_assoc($qTransaction);
+
+
+// Total Product Sold
+
+$qProduct = mysqli_query($conn, "
+SELECT
+
+IFNULL(SUM(td.qty),0) total_product
+
+FROM transaction_details td
+
+JOIN transactions t
+ON td.transaction_id=t.id
+
+$where
+");
+
+$product = mysqli_fetch_assoc($qProduct);
+
+// =====================================
+// HTML
+// =====================================
+
+$html = '
+
+<style>
+
+body{
+
+font-family:Arial, Helvetica, sans-serif;
+
+font-size:12px;
+
+color:#333;
+
+}
+
+.header{
+
+text-align:center;
+
+border-bottom:3px solid #0B4EA2;
+
+padding-bottom:15px;
+
+margin-bottom:20px;
+
+}
+
+.header h1{
+
+margin:0;
+
+font-size:28px;
+
+color:#0B4EA2;
+
+}
+
+.header p{
+
+margin:5px;
+
+color:#666;
+
+}
+
+.info{
+
+width:100%;
+
+margin-bottom:20px;
+
+}
+
+.info td{
+
+padding:4px;
+
+}
+
+.summary{
+
+width:100%;
+
+border-collapse:collapse;
+
+margin-bottom:25px;
+
+}
+
+.summary th{
+
+background:#0B4EA2;
+
+color:white;
+
+padding:10px;
+
+}
+
+.summary td{
+
+padding:10px;
+
+border:1px solid #ddd;
+
+text-align:center;
+
+font-weight:bold;
+
+}
+
+.table{
+
+width:100%;
+
+border-collapse:collapse;
+
+}
+
+.table th{
+
+background:#0B4EA2;
+
+color:white;
+
+padding:10px;
+
+border:1px solid #ddd;
+
+}
+
+.table td{
+
+padding:8px;
+
+border:1px solid #ddd;
+
+}
+
+.footer{
+
+margin-top:30px;
+
+text-align:center;
+
+font-size:11px;
+
+color:#777;
+
+}
+
+</style>
+
+<div class="header">
+
+<h1>OPTIK GAMMA</h1>
+
+<p>Clinical Precision Center</p>
+
+<h2>Transaction Report</h2>
+
+</div>
+
+<table class="info">
+
+<tr>
+
+<td width="20%"><strong>Period</strong></td>
+
+<td width="30%">:
+' . (!empty($start) ? date('d M Y', strtotime($start)) : '-') . '
+
+ s/d
+
+' . (!empty($end) ? date('d M Y', strtotime($end)) : '-') . '
+
+</td>
+
+<td width="20%"><strong>Printed By</strong></td>
+
+<td width="30%">:
+' . $user . '
+
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+
+<strong>Print Date</strong>
+
+</td>
+
+<td colspan="3">
+
+:
+' . date('d M Y H:i') . '
+
+</td>
+
+</tr>
+
+</table>
+
+<table class="summary">
+
+<tr>
+
+<th>Total Transaction</th>
+
+<th>Products Sold</th>
+
+<th>Total Revenue</th>
+
+</tr>
+
+<tr>
+
+<td>
+
+' . $transaction['total_transaction'] . '
+
+</td>
+
+<td>
+
+' . $product['total_product'] . '
+
+</td>
+
+<td>
+
+Rp ' . number_format($revenue['revenue'], 0, ",", ".") . '
+
+</td>
+
+</tr>
+
+</table>
+
+<table class="table">
+
+<tr>
+
+<th width="40">No</th>
+
+<th width="120">Code</th>
+
+<th>Patient</th>
+
+<th width="90">Payment</th>
+
+<th width="90">Date</th>
+
+<th width="120">Total</th>
+
+</tr>
+
+';
+$no = 1;
+
+while ($row = mysqli_fetch_assoc($query)) {
+
+    $html .= '
+
+<tr>
+
+<td align="center">
+
+' . $no++ . '
+
+</td>
+
+<td>
+
+' . $row['kode_transaksi'] . '
+
+</td>
+
+<td>
+
+' . $row['nama'] . '
+
+</td>
+
+<td align="center">
+
+' . $row['metode_pembayaran'] . '
+
+</td>
+
+<td align="center">
+
+' . date('d-m-Y', strtotime($row['tanggal'])) . '
+
+</td>
+
+<td align="right">
+
+Rp ' . number_format($row['total'], 0, ",", ".") . '
+
+</td>
+
+</tr>
+
+';
+
+}
+
+// ==============================
+// TOTAL
+// ==============================
+
+$html .= '
+
+<tr>
+
+<td colspan="5"
+align="right"
+style="font-weight:bold;
+background:#f2f2f2;
+font-size:14px;">
+
+TOTAL REVENUE
+
+</td>
+
+<td
+align="right"
+style="font-weight:bold;
+background:#dff0d8;
+font-size:14px;">
+
+Rp ' . number_format($revenue['revenue'], 0, ",", ".") . '
+
+</td>
+
+</tr>
+
+</table>
+
+<br><br>
+
+<table width="100%">
+
+<tr>
+
+<td width="60%"></td>
+
+<td align="center">
+
+Pekanbaru,
+
+' . date('d F Y') . '
+
+<br><br><br><br>
+
+<b>
+
+(' . $user . ')
+
+</b>
+
+</td>
+
+</tr>
+
+</table>
+
+<div class="footer">
+
+<hr>
+
+<b>
+
+Generated by Optik Gamma Information System
+
+</b>
+
+<br>
+
+Print Date :
+
+' . date('d F Y H:i:s') . '
+
+</div>
+
+';
+// ======================================
+// DOMPDF
+// ======================================
+
+$options = new Options();
+
+$options->set('isRemoteEnabled', true);
+
+$options->set('defaultFont', 'Arial');
+
+$dompdf = new Dompdf($options);
+
+$dompdf->loadHtml($html);
+
+// Ukuran kertas
+$dompdf->setPaper('A4', 'landscape');
+
+// Render PDF
+$dompdf->render();
+
+// ======================================
+// PAGE NUMBER
+// ======================================
+
+$canvas = $dompdf->getCanvas();
+
+$font = $dompdf->getFontMetrics()->getFont('Arial', 'normal');
+
+$canvas->page_text(
+    720,
+    565,
+    "Page {PAGE_NUM} of {PAGE_COUNT}",
+    $font,
+    10,
+    array(0, 0, 0)
+);
+
+// ======================================
+// OUTPUT
+// ======================================
+
+$dompdf->stream(
+    "Transaction_Report_" . date('Ymd_His') . ".pdf",
+    array(
+        "Attachment" => false
+    )
+);
+
+exit;

@@ -1,0 +1,70 @@
+.page-header {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+
+}
+
+.page-header h2 {
+
+    font-size: 38px;
+    font-weight: 700;
+
+}
+
+.transaction-code {
+
+    background: #0B4EA2;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-weight: 600;
+
+}
+
+.transaction-grid {
+
+    display: grid;
+    grid-template-columns: 320px 1fr 310px;
+    gap: 20px;
+
+}
+
+.left-panel,
+.center-panel,
+.right-panel {
+
+    background: #fff;
+    border-radius: 18px;
+    padding: 20px;
+    border: 1px solid #E5E7EB;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, .05);
+
+}
+
+.right-panel .card {
+    border-radius: 12px;
+}
+
+.right-panel .card-header {
+    background: #fff;
+    font-weight: 600;
+    border-bottom: 1px solid #e9ecef;
+}
+
+#grandTotal {
+    color: #198754;
+    font-weight: 700;
+}
+
+.table td,
+.table th {
+    vertical-align: middle;
+}
+
+.btn-success {
+    height: 48px;
+    font-weight: 600;
+}

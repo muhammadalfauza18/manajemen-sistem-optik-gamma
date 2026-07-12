@@ -1,0 +1,310 @@
+/* ===========================
+PATIENT PAGE
+=========================== */
+
+.page-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: #0B4EA2;
+}
+
+.page-subtitle {
+    color: #6B7280;
+    font-size: 14px;
+}
+
+/* ===========================
+CARD
+=========================== */
+
+.card {
+
+    border: none;
+
+    border-radius: 16px;
+
+    overflow: hidden;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, .05);
+
+}
+
+/* ===========================
+TABLE
+=========================== */
+
+.table {
+
+    margin: 0;
+
+}
+
+.table thead {
+
+    background: #F7F9FC;
+
+}
+
+.table thead th {
+
+    border: none;
+
+    padding: 18px;
+
+    font-size: 13px;
+
+    color: #6B7280;
+
+    font-weight: 600;
+
+}
+
+.table tbody td {
+
+    padding: 18px;
+
+    vertical-align: middle;
+
+    border-top: 1px solid #F1F3F7;
+
+    font-size: 14px;
+
+}
+
+.table tbody tr {
+
+    transition: .25s;
+
+}
+
+.table tbody tr:hover {
+
+    background: #F9FBFD;
+
+}
+
+/* ===========================
+PATIENT AVATAR
+=========================== */
+
+.avatar-initial {
+
+    width: 40px;
+
+    height: 40px;
+
+    border-radius: 50%;
+
+    background: #EAF2FF;
+
+    color: #0B4EA2;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-weight: 700;
+
+    margin-right: 10px;
+
+}
+
+/* ===========================
+BUTTON
+=========================== */
+
+.btn-primary {
+
+    background: #0B4EA2;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 10px 18px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+.btn-primary:hover {
+
+    background: #083A7B;
+
+}
+
+.btn-info {
+
+    background: #17A2B8;
+
+    border: none;
+
+}
+
+.btn-warning {
+
+    color: #fff;
+
+}
+
+.btn-danger {
+
+    border: none;
+
+}
+
+/* ===========================
+ACTION BUTTON
+=========================== */
+
+.btn-sm {
+
+    width: 35px;
+
+    height: 35px;
+
+    border-radius: 8px;
+
+    display: inline-flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    margin-right: 4px;
+
+}
+
+/* ===========================
+SEARCH
+=========================== */
+
+.search-box {
+
+    width: 350px;
+
+}
+
+.search-box input {
+
+    border: none;
+
+    outline: none;
+
+    width: 100%;
+
+    background: transparent;
+
+}
+
+/* ===========================
+EMPTY DATA
+=========================== */
+
+.empty-state {
+
+    padding: 60px;
+
+    text-align: center;
+
+}
+
+.empty-state img {
+
+    width: 120px;
+
+    margin-bottom: 15px;
+
+}
+
+.empty-state h5 {
+
+    font-weight: 700;
+
+    margin-bottom: 5px;
+
+}
+
+.empty-state p {
+
+    color: #6B7280;
+
+}
+
+/* ===========================
+BADGE
+=========================== */
+
+.badge-gender {
+
+    padding: 6px 14px;
+
+    border-radius: 30px;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+}
+
+.badge-male {
+
+    background: #EAF2FF;
+
+    color: #0B4EA2;
+
+}
+
+.badge-female {
+
+    background: #FFE8F1;
+
+    color: #E91E63;
+
+}
+
+/* ===========================
+RESPONSIVE
+=========================== */
+
+@media(max-width:992px) {
+
+    .search-box {
+
+        width: 100%;
+
+        margin-bottom: 15px;
+
+    }
+
+    .table {
+
+        font-size: 13px;
+
+    }
+
+    .btn-primary {
+
+        width: 100%;
+
+        margin-top: 10px;
+
+    }
+
+}
+
+@media(max-width:768px) {
+
+    .table {
+
+        display: block;
+
+        overflow-x: auto;
+
+    }
+
+}

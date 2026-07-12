@@ -1,0 +1,439 @@
+/* ==========================
+   Employee Management
+========================== */
+
+.card {
+
+    border-radius: 18px;
+
+}
+
+.table {
+
+    margin-bottom: 0;
+
+}
+
+.table thead th {
+
+    background: #F8FAFC;
+
+    color: #64748B;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    padding: 18px;
+
+    border: none;
+
+}
+
+.table tbody td {
+
+    padding: 18px;
+
+    vertical-align: middle;
+
+}
+
+.table tbody tr {
+
+    transition: .25s;
+
+}
+
+.table tbody tr:hover {
+
+    background: #F8FAFC;
+
+}
+
+.rounded-circle {
+
+    border: 2px solid #E2E8F0;
+
+}
+
+.badge {
+
+    font-size: 13px;
+
+    border-radius: 30px;
+
+    font-weight: 500;
+
+}
+
+.btn-action {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.btn-action i {
+    font-size: 16px;
+}
+
+.btn-action:hover {
+    background: #F8FAFC;
+}
+
+.text-muted {
+
+    font-size: 14px;
+
+}
+
+/* ==========================================================
+   Employee Management - Optik Gamma
+========================================================== */
+
+/* =====================
+   Card
+===================== */
+
+.card {
+    border: none;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(15, 23, 42, .06);
+}
+
+.card-body {
+    padding: 48px 52px;
+}
+
+/* =====================
+   Section Title
+===================== */
+
+.section-title {
+
+    display: flex;
+    align-items: center;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    color: #1D4ED8;
+
+    margin-bottom: 28px;
+}
+
+.section-title i {
+
+    margin-right: 10px;
+
+    font-size: 16px;
+
+    color: #2563EB;
+
+}
+
+/* =====================
+   Divider
+===================== */
+
+hr {
+
+    border: none;
+
+    border-top: 1px solid #EEF2F7;
+
+    opacity: 1;
+
+    margin: 38px 0;
+
+}
+
+/* =====================
+   Bootstrap Row
+===================== */
+
+.row {
+
+    --bs-gutter-x: 2rem;
+    --bs-gutter-y: 0.4rem;
+
+}
+
+/* =====================
+   Label
+===================== */
+
+.form-label {
+
+    font-size: 13px;
+
+    font-weight: 600;
+
+    color: #334155;
+
+    margin-bottom: 8px;
+
+}
+
+/* =====================
+   Input
+===================== */
+
+.form-control,
+.form-select {
+
+    height: 46px;
+
+    border-radius: 10px;
+
+    border: 1px solid #D7DFEA;
+
+    box-shadow: none;
+
+    transition: .25s;
+
+    font-size: 14px;
+
+    color: #334155;
+
+    padding-left: 16px;
+
+}
+
+.form-control::placeholder {
+
+    color: #94A3B8;
+
+}
+
+.form-control:focus,
+.form-select:focus {
+
+    border-color: #2563EB;
+
+    box-shadow: 0 0 0 .18rem rgba(37, 99, 235, .12);
+
+}
+
+/* =====================
+   Textarea
+===================== */
+
+textarea.form-control {
+
+    height: 92px;
+
+    resize: none;
+
+    padding-top: 12px;
+
+}
+
+/* =====================
+   Password Button
+===================== */
+
+.input-group .btn {
+
+    border-radius: 0 10px 10px 0;
+
+    border-color: #D7DFEA;
+
+    background: #fff;
+
+}
+
+.input-group .btn:hover {
+
+    background: #F8FAFC;
+
+}
+
+/* =====================
+   Radio
+===================== */
+
+.form-check {
+
+    margin-right: 24px;
+
+}
+
+.form-check-input {
+
+    cursor: pointer;
+
+}
+
+.form-check-input:checked {
+
+    background: #2563EB;
+
+    border-color: #2563EB;
+
+}
+
+/* =====================
+   Upload Preview
+===================== */
+
+#preview {
+
+    width: 120px;
+
+    height: 120px;
+
+    object-fit: cover;
+
+    border-radius: 50%;
+
+    border: 3px solid #E2E8F0;
+
+    padding: 3px;
+
+    transition: .25s;
+
+}
+
+#preview:hover {
+
+    transform: scale(1.03);
+
+}
+
+/* =====================
+   Button
+===================== */
+
+.btn-primary {
+
+    background: #2563EB;
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 11px 22px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+}
+
+.btn-primary:hover {
+
+    background: #1D4ED8;
+
+}
+
+.btn-light {
+
+    border-radius: 10px;
+
+    padding: 11px 22px;
+
+}
+
+/* =====================
+   Breadcrumb
+===================== */
+
+.breadcrumb {
+
+    margin-bottom: 25px;
+
+    font-size: 13px;
+
+}
+
+.breadcrumb-item a {
+
+    color: #64748B;
+
+    text-decoration: none;
+
+}
+
+.breadcrumb-item.active {
+
+    color: #0F172A;
+
+    font-weight: 600;
+
+}
+
+/* =====================
+   Search
+===================== */
+
+.search-box input {
+
+    border: none;
+
+    outline: none;
+
+    width: 100%;
+
+}
+
+/* =====================
+   Avatar
+===================== */
+
+.rounded-circle {
+
+    object-fit: cover;
+
+}
+
+/* =====================
+   Responsive
+===================== */
+
+@media (max-width:768px) {
+
+    .card-body {
+
+        padding: 24px;
+
+    }
+
+    .section-title {
+
+        font-size: 15px;
+
+    }
+
+    .row {
+
+        --bs-gutter-x: 1rem;
+
+    }
+
+}
+
+.btn-outline-secondary {
+
+    border-radius: 10px;
+
+    padding: 10px 22px;
+
+    font-weight: 500;
+
+}
+
+.btn-primary {
+
+    border-radius: 10px;
+
+    padding: 10px 24px;
+
+    font-weight: 600;
+
+}
