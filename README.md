@@ -36,7 +36,7 @@ Sistem informasi berbasis web untuk membantu proses administrasi pada **Optik Ga
 
 ## Login
 
-![Login](screenshots/login.png)
+![Login](screenshots/Halaman_Login.png)
 
 ---
 
