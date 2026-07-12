@@ -131,13 +131,6 @@ Project ini dikembangkan sebagai media pembelajaran sekaligus implementasi siste
 
 ---
 
-# 👨‍🎓 Pengembang
-
-**Muhammad Al Fauza**
-
-Teknik Informatika  
-Universitas Muhammadiyah Riau
-
 GitHub :
 https://github.com/muhammadalfauza18
 
