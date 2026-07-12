@@ -32,43 +32,6 @@ Sistem informasi berbasis web untuk membantu proses administrasi pada **Optik Ga
 
 ---
 
-# 🖥 Tampilan Aplikasi
-
-## Login
-
-![Login](screenshots/Halaman_Login.png)
-
----
-
-## Dashboard
-
-![Dashboard](screenshots/dashboard.png)
-
----
-
-## Data Pasien
-
-![Patient](screenshots/patient.png)
-
----
-
-## Rekam Medis
-
-![Medical](screenshots/medical.png)
-
----
-
-## Transaksi
-
-![Transaction](screenshots/transaction.png)
-
----
-
-## Laporan
-
-![Report](screenshots/report.png)
-
----
 
 # 🛠 Teknologi yang Digunakan
 
